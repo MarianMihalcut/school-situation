@@ -1,2 +1,2 @@
 # school-situation
-A program written in C used to manage school grades situation
+This branch combines use of command-line arguments and object oriented programming
