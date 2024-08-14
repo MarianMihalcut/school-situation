@@ -15,7 +15,11 @@ void delete_all();
 void calc_average_student();
 void calc_average_general();
 void calc_average_subject();
+void count_students_number();
 void count_students_passed();
 void count_students_failed();
+
+void count_backlog_students();
+void count_backlog_objects();
 
 #endif
