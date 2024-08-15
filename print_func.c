@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <print_func.h>
 
+//needs a help before each command
 //listing commands
 void help_add_data()
 {
@@ -68,5 +69,44 @@ void count_students_passed()
     printf("Command: ./main -count -stud_pass\n");
     printf("Counts all of students that passed the semester.\n");
     printf("Pass condition: have at least 5 on all grades.\n");
+}
+
+void count_students_failed()
+{
+    printf("Command: ./main -count -stud_fail\n");
+    printf("Counts all of student that didn't make it.\n");
+    printf("Info: counts all students having at least 1 object with a grade below 5.\n");
+}
+
+void count_backlog_students()
+{
+    printf("Command: ./main -count -bck --student <name>\n");
+    printf("Counts all of the subjects that a student didn't passed.\n");
+}
+
+void count_backlog_objects()
+{
+    printf("Command: ./main -count -bck --object <name>\n");
+    printf("Counts all of the students that didn't passed a specific subject.\n");
+}
+
+//listing all commands
+void help_menu()
+{
+    printf("For each command,./main -help <command_name>\n");
+    printf("Command names for help menu:\n");
+    printf("For adding data: add_data\n");
+    printf("To list a student with his grades: list_field\n");
+    printf("To list the whole table: list_table\n");
+    printf("To delete a student with his grades: delete_field\n");
+    printf("To delete the whole table:delete_all\n");
+    printf("Calculating a student's average: calc_stud_avg\n");
+    printf("Calculating general average: calc_gen_avg\n");
+    printf("Calculating a subject average: calc_sub_avg\n");
+    printf("Counting all students: cnt_stud\n");
+    printf("Counting all students that passed the semester: cnt_stud_pass\n");
+    printf("Counting all students that failed: cnt_stud_fail\n");
+    printf("Counting all of remainded students: cnt_bck_stud\n");
+    printf("Counting all failed students at an object: cnt_bck_obj\n");
 }
 
