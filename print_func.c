@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <print_func.h>
+#include "print_func.h"
 
 //needs a help before each command
 //listing commands
@@ -10,40 +10,40 @@ void help_add_data()
     printf("\n Will print the name, the study year and grades for specific subjects(avalaible in this program)\n");
 }
 
-void list_field()
+void help_list_field()
 {
     printf("Command: ./main -list --field <name>\n");
     printf("Lists the grades for a student given from command.\n");
     printf("Prints an error if the student was not found.\n");
 }
 
-void list_table()
+void help_list_table()
 {
     printf("Command: ./main -list \n");
     printf("Lists the whole table memorized in table.txt.\n");
 }
 
-void delete_field()
+void help_delete_field()
 {
     printf("Command: ./main -del --field <name>\n");
     printf("Deletes a specific field with a given name. The command is irreversible.\n");
 }
 
-void delete_all()
+void help_delete_all()
 {
     printf("Command: ./main -del\n");
     printf("Deletes the whole table.txt file. Deletion is irreversible.\n");
 }
 
 //for calculations
-void calc_average_student()
+void help_calc_average_student()
 {
     printf("Command: ./main -calc --student <name>\n");
     printf("Calculates the average from the grades of a specified student.\n");
     printf("Pass criteria is to have at least 5 at all objects.\n");
 }
 
-void calc_average_general()
+void help_calc_average_general()
 {
     printf("Command: ./main -calc --general\n");
     printf("Calculates firstly the average of each students.\n");
@@ -51,40 +51,40 @@ void calc_average_general()
     printf("This command is statistical.\n");
 }
 
-void calc_average_subject()
+void help_calc_average_subject()
 {
     printf("Command: ./main -calc --subject <subject_name>\n");
     printf("Calculates the average of all grades for a subject.\n");
     printf("This command is statistical.\n");
 }
 
-void count_students_number()
+void help_count_students_number()
 {
     printf("Command: ./main -count -stud_num\n");
     printf("Counts all of the students available in the database.\n");
 }
 
-void count_students_passed()
+void help_count_students_passed()
 {
     printf("Command: ./main -count -stud_pass\n");
     printf("Counts all of students that passed the semester.\n");
     printf("Pass condition: have at least 5 on all grades.\n");
 }
 
-void count_students_failed()
+void help_count_students_failed()
 {
     printf("Command: ./main -count -stud_fail\n");
     printf("Counts all of student that didn't make it.\n");
     printf("Info: counts all students having at least 1 object with a grade below 5.\n");
 }
 
-void count_backlog_students()
+void help_count_backlog_students()
 {
     printf("Command: ./main -count -bck --student <name>\n");
     printf("Counts all of the subjects that a student didn't passed.\n");
 }
 
-void count_backlog_objects()
+void help_count_backlog_objects()
 {
     printf("Command: ./main -count -bck --object <name>\n");
     printf("Counts all of the students that didn't passed a specific subject.\n");
@@ -106,7 +106,7 @@ void help_menu()
     printf("Counting all students: cnt_stud\n");
     printf("Counting all students that passed the semester: cnt_stud_pass\n");
     printf("Counting all students that failed: cnt_stud_fail\n");
-    printf("Counting all of remainded students: cnt_bck_stud\n");
+    printf("Counting all of failed objects of a student: cnt_bck_stud\n");
     printf("Counting all failed students at an object: cnt_bck_obj\n");
 }
 
