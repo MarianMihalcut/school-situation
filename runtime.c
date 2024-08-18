@@ -3,7 +3,7 @@
 #include "runtime.h"
 #include "print_func.h"
 
-int str_equal(char str1[],char str2[])
+int str_equal(char *str1,const char *str2)
 {
     int i=0;
     int len1=strlen(str1);
@@ -56,5 +56,4 @@ void help_menu_run(int argc,char *argv[])
     else
         printf("Too many arguments given! A max of 2 is allowed for help.");
 }
-
-//needs to see pointers 
+ 
