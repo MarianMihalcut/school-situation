@@ -20,10 +20,25 @@ info *allocation()
 
 void deallocation(info *student)
 {
-
+    for(int i=0;i<100;i++)
+    {
+        free(student[i].name);
+        free(student[i].study_year);
+        free(student[i].math);
+        free(student[i].grammar);
+        free(student[i].physics);
+        free(student[i].chemestry);
+        free(student[i].info_tech);
+    }
+    free(student);
 }
 
-void collect_data(info *student)
+int bring_data(info *student)
 {
-    
+    FILE *f=0;
+    f=fopen('data.txt','w');
+    while(!EOF)
+    {
+        
+    }
 }

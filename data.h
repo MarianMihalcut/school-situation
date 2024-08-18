@@ -14,7 +14,7 @@ typedef struct _info
 
 info *allocation();
 void deallocation(info *student);
-void collect_data(info *student);
+int bring_data(info *student);
 
 
 
