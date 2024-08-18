@@ -11,6 +11,8 @@ int main(int argc,char *argv[])
     {
         if(str_equal(argv[1],"-help"))
             help_menu_run(argc,argv);
+        if(str_equal(argv[1],"-add_data"))
+            ;
     }
     return 0;
 }

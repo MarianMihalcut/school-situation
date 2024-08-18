@@ -3,5 +3,6 @@
 
 int str_equal(char *str1,const char *str2);
 void help_menu_run(int argc,char *argv[]);
+void add_data();
 
 #endif
