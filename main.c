@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "runtime.h"
+#include "data.h"
 
 int main(int argc,char *argv[])
 {
@@ -12,7 +13,11 @@ int main(int argc,char *argv[])
         if(str_equal(argv[1],"-help"))
             help_menu_run(argc,argv);
         if(str_equal(argv[1],"-add_data"))
-            ;
+        {
+            info *student;
+            student=allocation();
+            bring_data(student);
+        }
     }
     return 0;
 }
