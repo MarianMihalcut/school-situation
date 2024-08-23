@@ -5,17 +5,17 @@ typedef struct _info
 {
     char *name;
     int study_year;
-    int math;
-    int grammar;
-    int physics;
-    int chemestry;
-    int info_tech;
+    int programming;
+    int num_methods;
+    int spec_math;
+    int data_stuctures;
+    int discrete_math;
 }info;
 
 info *allocation();
 void deallocation(info *student);
 void copy_char(int offset,int index,char *dest,char *source);
-void bring_data(info *student);
+int bring_data(info *student);
 
 
 

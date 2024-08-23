@@ -16,8 +16,17 @@ int main(int argc,char *argv[])
         {
             info *student;
             student=allocation();
-            bring_data(student);
+            int nr;
+            nr=bring_data(student);
+            for(int i=0;i<nr;i++)
+            {
+                fprintf(stdout,"%s\n",student[i].name);
+                fprintf(stdout,"%d %d %d %d %d %d %d",student[i].study_year,student[i].programming,student[i].num_methods,student[i].spec_math,student[i].data_stuctures,student[i].discrete_math);
+                fprintf(stdout,"\n\n");
+            }
+            deallocation(student);
         }
     }
+    //need to work on data stored in student pointer
     return 0;
 }
