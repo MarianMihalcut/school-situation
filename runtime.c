@@ -56,4 +56,29 @@ void help_menu_run(int argc,char *argv[])
     else
         printf("Too many arguments given! A max of 2 is allowed for help.");
 }
+
+void add_data(info student[],int nr)
+{
+    if(nr<100)
+    {
+        fprintf(stdout,"Please enter the name of student:\n");
+        fscanf(stdin,"%s",student[nr].name);
+        fprintf(stdout,"Please give the study year:\n");
+        fscanf(stdin,"%d",&student[nr].study_year);
+        fprintf(stdout,"Please give the grades for the following objects:\n");
+        fprintf(stdout,"Programming:\n");
+        fscanf(stdin,"%d",&student[nr].programming);
+        fprintf(stdout,"Numerical methods:\n");
+        fscanf(stdin,"%d",&student[nr].num_methods);
+        fprintf(stdout,"Special math:\n");
+        fscanf(stdin,"%d",&student[nr].spec_math);
+        fprintf(stdout,"Data structures:\n");
+        fscanf(stdin,"%d",&student[nr].data_stuctures);
+        fprintf(stdout,"Discrete math:\n");
+        fscanf(stdin,"%d",&student[nr].discrete_math);
+        nr++;
+    }
+    else
+        fprintf(stdout,"Error: Full storage.");
+}
  

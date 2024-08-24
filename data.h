@@ -3,7 +3,7 @@
 
 typedef struct _info
 {
-    char *name;
+    char name[20];
     int study_year;
     int programming;
     int num_methods;
@@ -12,10 +12,9 @@ typedef struct _info
     int discrete_math;
 }info;
 
-info *allocation();
-void deallocation(info *student);
 void copy_char(int offset,int index,char *dest,char *source);
-int bring_data(info *student);
+int bring_data(info student[]);
+void mount_data(info student[],int nr);
 
 
 

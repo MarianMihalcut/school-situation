@@ -3,21 +3,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-info *allocation()
-{
-    info *student=0;
-    student=(info *) malloc(100*sizeof(info));
-    for(int i=0;i<100;i++)
-        student[i].name=(char *) malloc(20*sizeof(char));
-    return student;
-}
-
-void deallocation(info *student)
-{
-    for(int i=0;i<100;i++)
-        free(student[i].name);
-    free(student);
-}
 
 void copy_char(int offset,int index,char *dest,char *source)
 {
@@ -27,12 +12,10 @@ void copy_char(int offset,int index,char *dest,char *source)
     dest[j]='\0';
 }
 
-int bring_data(info *student)
+int bring_data(info student[])
 {
     int cnt=0;
     FILE *f;
-    char *str=0;
-    str=(char *) malloc(50*sizeof(char));
     f=fopen("data.csv","r");
     char name[50];
     int year,mat1,mat2,mat3,mat4,mat5;
@@ -45,9 +28,9 @@ int bring_data(info *student)
         int offset=0;
         char *str1=0;
         str1=(char *) malloc(50*sizeof(char));
+        int cnt_order=1;
         while(str[offset]!='\0')
         {
-            int cnt_order=1;
             int index=offset+1;
             while(str[index]!=',' && str[index]!='\0')
                 index++;
@@ -90,4 +73,16 @@ int bring_data(info *student)
     }
     fclose(f);
     return cnt;
+}
+
+void mount_data(info student[],int nr)
+{
+    FILE *f=0;
+    f=fopen("data.csv","w");
+    for(int i=0;i<nr;i++)
+    {
+        fprintf(f,"%s,",student[i].name);
+        fprintf(f,"%d,%d,%d,%d,%d,%d\n",student[i].study_year,student[i].programming,student[i].num_methods,student[i].spec_math,student[i].data_stuctures,student[i].discrete_math);
+    }
+    fclose(f);
 }
