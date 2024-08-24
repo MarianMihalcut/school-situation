@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "stdio.h": "c",
-        "print_func.h": "c"
+        "print_func.h": "c",
+        "stdlib.h": "c"
     }
 }
