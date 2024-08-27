@@ -10,13 +10,14 @@ typedef struct _info
     int spec_math;
     int data_stuctures;
     int discrete_math;
+    struct _info *next;
 }info;
 
+info *allocate_elem();
+void insert_elem(info *student,char name[],int year,int mat1,int mat2,int mat3,int mat4,int mat5);
+
 void copy_char(int offset,int index,char *dest,char *source);
-int bring_data(info student[]);
-void mount_data(info student[],int nr);
-
-
-
+void bring_data(info *student);
+void mount_data(info *student);
 
 #endif

@@ -7,6 +7,6 @@ int str_equal(char *str1,const char *str2);
 void help_menu_run(int argc,char *argv[]);
 
 //working with data
-void add_data(info student[],int nr);
+void add_data(info *student);
 
 #endif

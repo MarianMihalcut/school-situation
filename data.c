@@ -3,6 +3,41 @@
 #include <stdlib.h>
 #include <string.h>
 
+info *allocate_elem()
+{
+    info *p=(info *) malloc(sizeof(info));
+    p->next=NULL;
+    return p;
+}
+
+void insert_elem(info *student,char name[],int year,int mat1,int mat2,int mat3,int mat4,int mat5)
+{
+    if(student==NULL)
+    {
+        student=allocate_elem();
+        strcpy(student->name,name);
+        student->study_year=year;
+        student->programming=mat1;
+        student->num_methods=mat2;
+        student->spec_math=mat3;
+        student->data_stuctures=mat4;
+        student->discrete_math=mat5;
+    }
+    else
+    {
+        info *student1=NULL;
+        student1=allocate_elem();
+        strcpy(student1->name,name);
+        student1->study_year=year;
+        student1->programming=mat1;
+        student1->num_methods=mat2;
+        student1->spec_math=mat3;
+        student1->data_stuctures=mat4;
+        student1->discrete_math=mat5;
+        student1->next=student;
+        student=student1;
+    }
+}
 
 void copy_char(int offset,int index,char *dest,char *source)
 {
@@ -12,7 +47,7 @@ void copy_char(int offset,int index,char *dest,char *source)
     dest[j]='\0';
 }
 
-int bring_data(info student[])
+void bring_data(info *student)
 {
     int cnt=0;
     FILE *f;
@@ -41,48 +76,48 @@ int bring_data(info student[])
                 offset=index+1;
             //fprintf(stdout,"%s\n",str1);
             if(cnt_order==1)
-                strcpy(student[cnt].name,str1);
+                strcpy(name,str1);
             else
             {
                 int number=atoi(str1);
                 switch(cnt_order)
                 {
                     case 2:
-                        student[cnt].study_year=number;
+                        year=number;
                         break;
                     case 3:
-                        student[cnt].programming=number;
+                        mat1=number;
                         break;
                     case 4:
-                        student[cnt].num_methods=number;
+                        mat2=number;
                         break;
                     case 5:
-                        student[cnt].spec_math=number;
+                        mat3=number;
                         break;
                     case 6:
-                        student[cnt].data_stuctures=number;
+                        mat4=number;
                         break;
                     case 7:
-                        student[cnt].discrete_math=number;
+                        mat5=number;
                         break;
                 }
             }
             cnt_order++;
         }
         cnt++;
+        insert_elem(student,name,year,mat1,mat2,mat3,mat4,mat5);
     }
     fclose(f);
-    return cnt;
 }
 
-void mount_data(info student[],int nr)
+void mount_data(info *student)
 {
     FILE *f=0;
     f=fopen("data.csv","w");
-    for(int i=0;i<nr;i++)
+    while(student!=NULL)
     {
-        fprintf(f,"%s,",student[i].name);
-        fprintf(f,"%d,%d,%d,%d,%d,%d\n",student[i].study_year,student[i].programming,student[i].num_methods,student[i].spec_math,student[i].data_stuctures,student[i].discrete_math);
+        fprintf(f,"%s,",student->name);
+        fprintf(f,"%d,%d,%d,%d,%d,%d\n",student->study_year,student->programming,student->num_methods,student->spec_math,student->data_stuctures,student->discrete_math);
     }
     fclose(f);
 }
