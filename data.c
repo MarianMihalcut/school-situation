@@ -10,7 +10,7 @@ info *allocate_elem()
     return p;
 }
 
-void insert_elem(info *student,char name[],int year,int mat1,int mat2,int mat3,int mat4,int mat5)
+info *insert_elem(info *student,char name[],int year,int mat1,int mat2,int mat3,int mat4,int mat5)
 {
     if(student==NULL)
     {
@@ -37,6 +37,7 @@ void insert_elem(info *student,char name[],int year,int mat1,int mat2,int mat3,i
         student1->next=student;
         student=student1;
     }
+    return student;
 }
 
 void copy_char(int offset,int index,char *dest,char *source)
@@ -47,11 +48,13 @@ void copy_char(int offset,int index,char *dest,char *source)
     dest[j]='\0';
 }
 
-void bring_data(info *student)
+info *bring_data(info *student)
 {
     int cnt=0;
-    FILE *f;
+    FILE *f=0;
     f=fopen("data.csv","r");
+    if(0==f)
+        fprintf(stdout,"Failed to open file");
     char name[50];
     int year,mat1,mat2,mat3,mat4,mat5;
     while(!feof(f))
@@ -105,9 +108,10 @@ void bring_data(info *student)
             cnt_order++;
         }
         cnt++;
-        insert_elem(student,name,year,mat1,mat2,mat3,mat4,mat5);
+        student=insert_elem(student,name,year,mat1,mat2,mat3,mat4,mat5);
     }
     fclose(f);
+    return student;
 }
 
 void mount_data(info *student)
@@ -117,7 +121,11 @@ void mount_data(info *student)
     while(student!=NULL)
     {
         fprintf(f,"%s,",student->name);
-        fprintf(f,"%d,%d,%d,%d,%d,%d\n",student->study_year,student->programming,student->num_methods,student->spec_math,student->data_stuctures,student->discrete_math);
+        if(student->next==NULL)
+            fprintf(f,"%d,%d,%d,%d,%d,%d",student->study_year,student->programming,student->num_methods,student->spec_math,student->data_stuctures,student->discrete_math);
+        else
+            fprintf(f,"%d,%d,%d,%d,%d,%d\n",student->study_year,student->programming,student->num_methods,student->spec_math,student->data_stuctures,student->discrete_math);
+        student=student->next;
     }
     fclose(f);
 }

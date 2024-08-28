@@ -1,6 +1,8 @@
 #ifndef DATA_H_
 #define DATA_H_
 
+//data is saved if it's given as argument and returned
+
 typedef struct _info
 {
     char name[20];
@@ -14,10 +16,10 @@ typedef struct _info
 }info;
 
 info *allocate_elem();
-void insert_elem(info *student,char name[],int year,int mat1,int mat2,int mat3,int mat4,int mat5);
+info *insert_elem(info *student,char name[],int year,int mat1,int mat2,int mat3,int mat4,int mat5);
 
 void copy_char(int offset,int index,char *dest,char *source);
-void bring_data(info *student);
+info *bring_data(info *student);
 void mount_data(info *student);
 
 #endif
