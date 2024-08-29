@@ -58,7 +58,7 @@ void help_menu_run(int argc,char *argv[])
         printf("Too many arguments given! A max of 2 is allowed for help.");
 }
 
-void add_data(info *student)
+info *add_data(info *student)
 {
     char name[20];
     int year,mat1,mat2,mat3,mat4,mat5;
@@ -77,6 +77,40 @@ void add_data(info *student)
     fscanf(stdin,"%d",&mat4);
     fprintf(stdout,"Discrete math:\n");
     fscanf(stdin,"%d",&mat5);
-    insert_elem(student,name,year,mat1,mat2,mat3,mat4,mat5);
+    student=insert_elem(student,name,year,mat1,mat2,mat3,mat4,mat5);
+    return student;
 }
  
+void list_field(info *student,char name[])
+{
+    info *student1=student;
+    while(student1!=NULL && strcmp(student1->name,name)!=0)
+        student1=student1->next;
+    if(student1==NULL)
+        fprintf(stdout,"The name cannot be found in the database.\n");
+    else
+    {
+        fprintf(stdout,"Study year: %d\n",student1->study_year);
+        fprintf(stdout,"Programming grade: %d\n",student1->programming);
+        fprintf(stdout,"Numerical methods grade: %d\n",student1->num_methods);
+        fprintf(stdout,"Special math grade: %d\n",student1->spec_math);
+        fprintf(stdout,"Data structures grade: %d\n",student1->data_stuctures);
+        fprintf(stdout,"Discrete math: %d\n",student1->discrete_math);
+    }
+}
+
+void list_all(info *student)
+{
+    while(student!=NULL)
+    {
+        fprintf(stdout,"Name: %s\n",student->name);
+        fprintf(stdout,"Study year: %d\n",student->study_year);
+        fprintf(stdout,"Programming grade: %d\n",student->programming);
+        fprintf(stdout,"Numerical methods grade: %d\n",student->num_methods);
+        fprintf(stdout,"Special math grade: %d\n",student->spec_math);
+        fprintf(stdout,"Data structures grade: %d\n",student->data_stuctures);
+        fprintf(stdout,"Discrete math: %d\n",student->discrete_math);
+        fprintf(stdout,"\n");
+        student=student->next;
+    }
+}

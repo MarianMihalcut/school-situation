@@ -129,3 +129,12 @@ void mount_data(info *student)
     }
     fclose(f);
 }
+
+info *delete_front(info *student)
+{
+    info *student1=student;
+    student=student->next;
+    memset(student1,0,sizeof(info));
+    free(student1);
+    return student;
+}
