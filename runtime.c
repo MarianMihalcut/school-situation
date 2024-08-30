@@ -3,6 +3,7 @@
 #include "runtime.h"
 #include "print_func.h"
 #include "data.h"
+#include <stdlib.h>
 
 int str_equal(char *str1,const char *str2)
 {
@@ -113,4 +114,48 @@ void list_all(info *student)
         fprintf(stdout,"\n");
         student=student->next;
     }
+}
+
+info *delete_field(info *student,char name[])
+{
+    if(strcmp(student->name,name)==0)
+        student=delete_front(student);
+    else
+    {
+        info *student1=student;
+        while(student1->next!=NULL && strcmp(student1->next->name,name)!=0)
+            student1=student1->next;
+        if(student1->next==NULL && strcmp(student1->next->name,name)==0)
+            student1=delete_tail(student1);
+        else if(strcmp(student1->next->name,name)==0)
+            student1=delete_between(student1);
+    }
+    return student;
+}
+
+info *delete_all(info *student)
+{
+    while(student!=NULL)
+    {
+        info *student1=student;
+        student=student->next;
+        memset(student1,0,sizeof(info));
+        free(student1);
+    }
+    return student;
+}
+
+float calc_average_student(info *student,char name[])
+{
+
+}
+
+float calc_average_general(info *student)
+{
+
+}
+
+float calc_average_subject(info *student,char subject[])
+{
+    
 }

@@ -36,6 +36,25 @@ int main(int argc,char *argv[])
             else if(argc==4 && str_equal(argv[2],"--field"))
                 student=delete_field(student,argv[3]);
         }
+        if(str_equal(argv[1],"-calc"))
+        {
+            if(argc==2)
+                fprintf(stdout,"Please provide a flag: --general,--student or --subject");
+            else if(argc==3)
+            {
+                if(str_equal(argv[2],"--general"))
+                    fprintf(stdout,"%f\n",calc_average_general(student));
+                else
+                    fprintf(stdout,"Please provide a name or subject!\n");
+            }
+            else if(argc==4)
+            {
+                if(str_equal(argv[2],"--student"))
+                    fprintf(stdout,"%f\n",calc_average_student(student,argv[3]));
+                if(str_equal(argv[2],"--subject"))
+                    fprintf(stdout,"%f\n",calc_average_subject(student,argv[3]));
+            }
+        }
         mount_data(student);
     }
     return 0;

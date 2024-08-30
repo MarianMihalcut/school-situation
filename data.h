@@ -17,9 +17,9 @@ typedef struct _info
 
 info *allocate_elem();
 info *insert_elem(info *student,char name[],int year,int mat1,int mat2,int mat3,int mat4,int mat5);
-info *delete_between(info *student);
+info *delete_between(info *student); //pointer before that which is deleted
 info *delete_front(info *student);
-info *delete_tail(info *student);
+info *delete_tail(info *student); //pointer before the last
 
 void copy_char(int offset,int index,char *dest,char *source);
 info *bring_data(info *student);

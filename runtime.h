@@ -13,4 +13,8 @@ void list_all(info *student);
 info *delete_field(info *student,char name[]);
 info *delete_all(info *student);
 
+//calculations
+float calc_average_student(info *student,char name[]);
+float calc_average_general(info *student);
+float calc_average_subject(info *student,char subject[]);
 #endif

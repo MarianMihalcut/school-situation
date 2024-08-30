@@ -138,3 +138,21 @@ info *delete_front(info *student)
     free(student1);
     return student;
 }
+
+info *delete_between(info *student)
+{
+    info *student1=student->next;
+    student->next=student1->next;
+    memset(student1,0,sizeof(info));
+    free(student1);
+    return student;
+}
+
+info *delete_tail(info *student)
+{
+    info *student1=student->next;
+    student->next=NULL;
+    memset(student1,0,sizeof(info));
+    free(student1);
+    return student;
+}
