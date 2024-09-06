@@ -147,15 +147,91 @@ info *delete_all(info *student)
 
 float calc_average_student(info *student,char name[])
 {
-
+    info *student1=student;
+    while(student1!=NULL && strcmp(student1->name,name)!=0)
+        student1=student1->next;
+    float sum=0;
+    if(student1==NULL)
+    {
+        fprintf(stdout,"The student has not been found.\n");
+        return -1;
+    }
+    else if(student_failed(student1))
+    {
+        fprintf(stdout,"This student did not passed.\n");
+        return -1;
+    }
+    else
+    {
+        sum+=student1->programming+student1->num_methods+student1->spec_math;
+        sum+=student1->data_stuctures+student1->discrete_math;
+        return sum/5;
+    }
+    
 }
 
 float calc_average_general(info *student)
 {
-
+    info *student1=student;
+    float sum=0;
+    int cnt=0;
+    while(student1!=NULL)
+    {
+        if(!student_failed(student1))
+        {
+            sum+=calc_average_student(student1,student1->name);
+            cnt++;
+        }
+        student1=student1->next;
+    }
+    return sum/cnt;
 }
 
 float calc_average_subject(info *student,char subject[])
 {
-    
+    info *student1=student;
+    float sum=0;
+    int cnt=0;
+    int sub=decode_subject(subject);
+    if(sub==-1)
+        return -1;
+    while(student1!=NULL)
+    {
+        if(!student_failed(student1))
+        {
+            switch(sub)
+            {
+                case 1:
+                    sum+=student1->programming;
+                    break;
+                case 2:
+                    sum+=student1->num_methods;
+                    break;
+                case 3:
+                    sum+=student1->spec_math;
+                    break;
+                case 4:
+                    sum+=student1->data_stuctures;
+                    break;
+                case 5:
+                    sum+=student1->discrete_math;
+                    break;
+            }
+            cnt++;
+        }
+        student1=student1->next;
+    }
+    return sum/cnt;
+}
+
+int count_students_number(info *student)
+{
+    info *student1=student;
+    int cnt=0;
+    while(student1!=NULL)
+    {
+        cnt++;
+        student1=student1->next;
+    }
+    return cnt;
 }

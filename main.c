@@ -17,7 +17,10 @@ int main(int argc,char *argv[])
         if(str_equal(argv[1],"-help"))
             help_menu_run(argc,argv);
         if(str_equal(argv[1],"-add_data"))
+        {
             student=add_data(student);
+            mount_data(student);
+        }
         if(str_equal(argv[1],"-list"))
         {
             if(argc==2)
@@ -26,6 +29,7 @@ int main(int argc,char *argv[])
                 printf("Please run the command again and provide a name for search.");
             else if(argc==4 && str_equal(argv[2],"--field"))
                 list_field(student,argv[3]);
+            mount_data(student);
         }
         if(str_equal(argv[1],"-del"))
         {
@@ -35,6 +39,7 @@ int main(int argc,char *argv[])
                 printf("Please run the command again and provide a name for deletion.");
             else if(argc==4 && str_equal(argv[2],"--field"))
                 student=delete_field(student,argv[3]);
+            mount_data(student);
         }
         if(str_equal(argv[1],"-calc"))
         {
@@ -43,19 +48,27 @@ int main(int argc,char *argv[])
             else if(argc==3)
             {
                 if(str_equal(argv[2],"--general"))
-                    fprintf(stdout,"%f\n",calc_average_general(student));
+                    fprintf(stdout,"The general average is: %.2f\n",calc_average_general(student));
                 else
                     fprintf(stdout,"Please provide a name or subject!\n");
             }
             else if(argc==4)
             {
                 if(str_equal(argv[2],"--student"))
-                    fprintf(stdout,"%f\n",calc_average_student(student,argv[3]));
+                {
+                    float result=calc_average_student(student,argv[3]);
+                    if(result!=-1)
+                        fprintf(stdout,"The average is: %.2f\n",result);
+                }
                 if(str_equal(argv[2],"--subject"))
-                    fprintf(stdout,"%f\n",calc_average_subject(student,argv[3]));
+                {
+                    float result=calc_average_subject(student,argv[3]);
+                    if(result!=-1)
+                        fprintf(stdout,"The average of subject is: %.2f\n",result);
+                }
             }
         }
-        mount_data(student);
+        
     }
     return 0;
 }

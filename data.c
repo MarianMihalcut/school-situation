@@ -156,3 +156,33 @@ info *delete_tail(info *student)
     free(student1);
     return student;
 }
+
+int student_failed(info *student)
+{
+    if(student->programming<5 || student->num_methods<5)
+        return 1;
+    if(student->spec_math<5 || student->data_stuctures<5)
+        return 1;
+    if(student->discrete_math<5)
+       return 1;
+    return 0;    
+}
+
+int decode_subject(char subject[])
+{
+    if(strcmp(subject,"programming")==0)
+        return 1;
+    else if(strcmp(subject,"numerical_methods")==0)
+        return 2;
+    else if(strcmp(subject,"special_math")==0)
+        return 3;
+    else if(strcmp(subject,"data_structures")==0)
+        return 4;
+    else if(strcmp(subject,"discrete_math")==0)
+        return 5;
+    else
+    {
+        printf("Subject could be identified. Please check the spelling and write without caps.");
+        return -1;
+    }
+}

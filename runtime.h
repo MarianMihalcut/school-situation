@@ -17,4 +17,7 @@ info *delete_all(info *student);
 float calc_average_student(info *student,char name[]);
 float calc_average_general(info *student);
 float calc_average_subject(info *student,char subject[]);
+
+//count
+int count_students_number(info *student);
 #endif
