@@ -20,4 +20,9 @@ float calc_average_subject(info *student,char subject[]);
 
 //count
 int count_students_number(info *student);
+int count_students_passed(info *student);
+int count_students_failed(info *student);
+int count_backlog_students(info *student,char name[]);
+int count_backlog_objects(info *student,char subject[]);
+
 #endif

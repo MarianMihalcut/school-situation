@@ -235,3 +235,96 @@ int count_students_number(info *student)
     }
     return cnt;
 }
+
+int count_students_passed(info *student)
+{
+    info *student1=student;
+    int cnt=0;
+    while(student1!=NULL)
+    {
+        if(!student_failed(student1))
+            cnt++;
+        student1=student1->next;
+    }
+    return cnt;
+}
+
+int count_students_failed(info *student)
+{
+    info *student1=student;
+    int cnt=0;
+    while(student1!=NULL)
+    {
+        if(student_failed(student1))
+            cnt++;
+        student1=student1->next;
+    }
+    return cnt;
+}
+
+int count_backlog_students(info *student, char name[])
+{
+    info *student1=student;
+    while(student1!=NULL && strcmp(student->name,name)==0)
+        student1=student1->next;
+    if(student1==NULL)
+    {
+        fprintf(stdout,"The student has not been found in database.\n");
+        return -1;
+    }
+    else
+    {
+        int cnt=0;
+        if(student1->programming<5)
+            cnt++;
+        if(student1->num_methods<5)
+            cnt++;
+        if(student1->spec_math<5)
+            cnt++;
+        if(student1->data_stuctures<5)
+            cnt++;
+        if(student1->discrete_math<5)
+            cnt++;
+        return cnt;
+    }
+}
+
+int count_backlog_objects(info *student,char subject[])
+{
+    info *student1=student;
+    int code=decode_subject(subject);
+    if(code==-1)
+        return -1;
+    else
+    {
+        int cnt=0;
+        while(student1!=NULL)
+        {
+            switch(code)
+            {
+                case 1:
+                    if(student1->programming<5)
+                        cnt++;
+                    break;
+                case 2:
+                    if(student1->num_methods<5)
+                        cnt++;
+                    break;
+                case 3:
+                    if(student1->spec_math<5)
+                        cnt++;
+                    break;
+                case 4:
+                    if(student1->data_stuctures<5)
+                        cnt++;
+                    break;
+                case 5:
+                    if(student1->discrete_math<5)
+                        cnt++;
+                    break;
+            }
+            student1=student1->next;
+        }
+        return cnt;
+    }
+}
