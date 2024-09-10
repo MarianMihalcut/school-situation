@@ -265,7 +265,7 @@ int count_students_failed(info *student)
 int count_backlog_students(info *student, char name[])
 {
     info *student1=student;
-    while(student1!=NULL && strcmp(student->name,name)==0)
+    while(student1!=NULL && strcmp(student1->name,name)!=0)
         student1=student1->next;
     if(student1==NULL)
     {

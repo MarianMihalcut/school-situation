@@ -16,12 +16,12 @@ int main(int argc,char *argv[])
         student=bring_data(student);
         if(str_equal(argv[1],"-help"))
             help_menu_run(argc,argv);
-        if(str_equal(argv[1],"-add_data"))
+        else if(str_equal(argv[1],"-add_data"))
         {
             student=add_data(student);
             mount_data(student);
         }
-        if(str_equal(argv[1],"-list"))
+        else if(str_equal(argv[1],"-list"))
         {
             if(argc==2)
                 list_all(student);
@@ -31,7 +31,7 @@ int main(int argc,char *argv[])
                 list_field(student,argv[3]);
             mount_data(student);
         }
-        if(str_equal(argv[1],"-del"))
+        else if(str_equal(argv[1],"-del"))
         {
             if(argc==2)
                 student=delete_all(student);
@@ -41,7 +41,7 @@ int main(int argc,char *argv[])
                 student=delete_field(student,argv[3]);
             mount_data(student);
         }
-        if(str_equal(argv[1],"-calc"))
+        else if(str_equal(argv[1],"-calc"))
         {
             if(argc==2)
                 fprintf(stdout,"Please provide a flag: --general,--student or --subject");
@@ -68,7 +68,31 @@ int main(int argc,char *argv[])
                 }
             }
         }
-        
+        else if(str_equal(argv[1],"-count"))
+        {
+            if(argc==2)
+                fprintf(stdout,"Please add a flag and eventually a name/subject!\n");
+            else if(argc==3 && !str_equal(argv[2],"-bck"))
+            {   
+                if(str_equal(argv[2],"-stud_num"))
+                    fprintf(stdout,"%d\n",count_students_number(student));
+                else if(str_equal(argv[2],"-stud_pass"))
+                    fprintf(stdout,"%d\n",count_students_passed(student));
+                else if(str_equal(argv[2],"-stud_fail"))
+                    fprintf(stdout,"%d\n",count_students_failed(student));
+            }
+            else if((argc==3 || argc==4) && str_equal(argv[2],"-bck"))
+                fprintf(stdout,"Please do not forget to insert a flag and/or a name/subject.");
+            else if(argc==5 && str_equal(argv[2],"-bck"))
+            {
+                if(str_equal(argv[3],"--student"))
+                    fprintf(stdout,"%d\n",count_backlog_students(student,argv[4]));
+                if(str_equal(argv[3],"--object"))
+                    fprintf(stdout,"%d\n",count_backlog_objects(student,argv[4]));
+            }
+        }
+        else
+            fprintf(stdout,"Please check the help menu for the correct commands.");
     }
     return 0;
 }
